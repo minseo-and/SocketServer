@@ -1,3 +1,4 @@
+import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.net.ServerSocket
 
@@ -16,6 +17,19 @@ fun main(){
     dos.writeDouble(11.11)
     dos.writeBoolean(true)
     dos.writeUTF("서버가 보낸 문자열")
+
+    //클라이언트의 데이터 수신
+    val inputString = socket.getInputStream()
+    val dis = DataInputStream(inputString)
+    val a1 = dis.readInt()
+    val a2 = dis.readDouble()
+    val a3 = dis.readBoolean()
+    val a4= dis.readUTF()
+
+    println("a1 : $a1\n")
+    println("a2 : $a2\n")
+    println("a3 : $a3\n")
+    println("a4 : $a4\n")
 
     //서버 종료
     socket.close()
